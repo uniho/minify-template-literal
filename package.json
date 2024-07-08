@@ -1,9 +1,30 @@
 {
+  "name": "minify-template-literal",
+  "version": "1.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uniho/minify-template-literal.git"
+  },
+  "keywords": [
+    "esbuild",
+    "emotion",
+    "htm",
+    "developit",
+    "template literal",
+    "template string",
+    "react"
+  ],
+  "author": "uniho",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/uniho/minify-template-literal/issues"
+  },
+  "homepage": "https://github.com/uniho/minify-template-literal",
   "bin": {
-    "minify-template-literal": "./src/index.js"
+    "minify-template-literal": "src/index.js"
   },
   "type": "module",
-  "devDependencies": {
+  "dependencies": {
     "@ampproject/remapping": "^2.3.0",
     "astray": "^1.1.1",
     "magic-string": "^0.30.10",
