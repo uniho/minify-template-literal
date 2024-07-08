@@ -1,6 +1,6 @@
-import t from"https://esm.sh/react@canary?dev";import"https://esm.sh/react-dom@canary?dev";import e from"https://esm.sh/react-dom@canary/client?dev";import*as o from"https://esm.sh/@emotion/css@11";import r from"https://esm.sh/htm";window.html=r.bind(t.createElement);const m=a=>html`
+import t from"https://esm.sh/react@canary?dev";import"https://esm.sh/react-dom@canary?dev";import e from"https://esm.sh/react-dom@canary/client?dev";import*as o from"https://esm.sh/@emotion/css@11";import r from"https://esm.sh/htm";const m=r.bind(t.createElement),s=a=>m`
     <div>
-      <button className=${s} onClick=${c=>{throw new Error(1)}}>
+      <button className=${n} onClick=${p=>{throw new Error(1)}}>
         TEST
       </button>
 
@@ -18,7 +18,7 @@ import t from"https://esm.sh/react@canary?dev";import"https://esm.sh/react-dom@c
       <pre>123</pre>
       <pre>456</pre><pre>789</pre><div>abc</div><div>def</div>
     </div>
-  `,s=o.css`
+  `,n=o.css`
   /* 
     comment1 
   */
@@ -28,5 +28,5 @@ import t from"https://esm.sh/react@canary?dev";import"https://esm.sh/react-dom@c
   .test::after {
     content: "/* not comment */";
   }
-`,n=e.createRoot(document.getElementById("app"));n.render(t.createElement(m));
+`,c=e.createRoot(document.getElementById("app"));c.render(t.createElement(s));
 //# sourceMappingURL=test1.js.map

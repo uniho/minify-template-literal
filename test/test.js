@@ -5,7 +5,8 @@ import ReactDOMClient from "https://esm.sh/react-dom@canary/client?dev";
 import * as emotion from "https://esm.sh/@emotion/css@11";
 import htm from "https://esm.sh/htm";
 
-window.html = htm.bind(React.createElement);
+// window.html = htm.bind(React.createElement);
+const html = htm.bind(React.createElement);
 
 const Page = props => {
   return html`
