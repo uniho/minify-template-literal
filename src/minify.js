@@ -27,7 +27,8 @@ export async function minify(code, plugins, opts = {}) {
 
         const getName = obj => {
           const name = obj?.name;
-          if (!sourcemap || !name) return null;
+          if (!name) return null;
+          if (!sourcemap) return name;
           const s = sourcemap.originalPositionFor(obj.loc.start);
           return s.name || name;
         };
@@ -41,7 +42,7 @@ export async function minify(code, plugins, opts = {}) {
             const callee = node.tag?.callee;
             if (!callee) return;
             if (callee.name) {
-              tagName = getName(callee.name) + '()';
+              tagName = getName(callee) + '()';
             } else {
               const property = callee.property;
               if (!property) return;
