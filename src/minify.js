@@ -1,10 +1,11 @@
 import {walk} from 'astray';
 import MagicString from 'magic-string';
 import {parse} from 'meriyah';
+import {SourceMapConsumer} from 'source-map';
 
 const SEPARATOR = "\x89sep\x89";
 
-export function minify(code, plugins, opts = {}) {
+export async function minify(code, plugins, opts = {}) {
   const out = new MagicString(code);
   const ast = parse(code, {
     next: true,
@@ -12,6 +13,8 @@ export function minify(code, plugins, opts = {}) {
     ranges: true,
     module: true,
   });
+
+  const sourcemap = opts.sourcemap && await new SourceMapConsumer(opts.sourcemap);
 
   walk(ast, {
     TaggedTemplateExpression(node) {
@@ -22,20 +25,28 @@ export function minify(code, plugins, opts = {}) {
         // // for TEST
         // console.log(node)
 
-        let tagName = node.tag?.name;
+        const getName = obj => {
+          const name = obj?.name;
+          if (!sourcemap || !name) return null;
+          const s = sourcemap.originalPositionFor(obj.loc.start);
+          return s.name || name;
+        };
+
+        let tagName = getName(node.tag);
+
         if (!tagName) {
           if (node.tag?.type == 'MemberExpression' && node.tag?.property?.name) {
-            tagName = node.tag.property.name;
+            tagName = getName(node.tag.property);
           } else {
             const callee = node.tag?.callee;
             if (!callee) return;
             if (callee.name) {
-              tagName = callee.name + '()';
+              tagName = getName(callee.name) + '()';
             } else {
               const property = callee.property;
               if (!property) return;
               if (!property.name) return;
-              tagName = property.name + '()';
+              tagName = getName(property) + '()';
             }
           }
         } 

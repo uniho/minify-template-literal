@@ -33,7 +33,14 @@ try {
   const src = await readFile(input, 'utf8');
 
   const plugins = [emotion(), jsx()];
-  const out = minify(src, plugins);
+
+  const opts = {};
+  if (args.values.remap) {
+    opts.mapfile = input + '.map';
+    opts.sourcemap =  await readFile(opts.mapfile, 'utf8');
+  }
+
+  const out = await minify(src, plugins, opts);
 
   if (!output) {
     console.log(out.toString());
@@ -44,10 +51,8 @@ try {
   await writeFile(output, out.toString(), 'utf8');
 
   if (args.values.remap) {
-    const mapfile = input + '.map';
-    const src = await readFile(mapfile, 'utf8');
-    const map = remap(out, input, mapfile, src);
-    await writeFile(mapfile, map.toString(), 'utf8');
+    const map = remap(out, input, opts.mapfile, opts.sourcemap);
+    await writeFile(opts.mapfile, map.toString(), 'utf8');
   }
 
   console.error('done!');
