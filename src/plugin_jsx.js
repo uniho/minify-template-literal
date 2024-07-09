@@ -9,9 +9,9 @@ export default options => ({
     while (1) {
       const m = regexp.exec(src);
       if (m) {
-        end = m.index - 1;
+        end = m.index;
       } else {
-        end = src.length - 1;
+        end = src.length;
       }
 
       const s = src.slice(start, end)
@@ -29,7 +29,7 @@ export default options => ({
       if (!m) break;
 
       dst += m[0];
-      start = end + m[0].length + 1;
+      start = end + m[0].length;
     }
 
     return dst;
