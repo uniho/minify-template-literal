@@ -8,6 +8,7 @@ export default options => ({
 
     // reduce whitespace to a single space
     .replace(/(\/\*!.*?\*\/|\"(?:(?!(?<!\\)\").)*\"|\'(?:(?!(?<!\\)\').)*\')\s*|\s+/g, '$1 ')
+    .replace(/(\/\*!.*?\*\/|\"(?:(?!(?<!\\)\").)*\"|\'(?:(?!(?<!\\)\').)*\')\s/g, '$1')
 
     // Remove leading and trailing whitespace
     .trim()
