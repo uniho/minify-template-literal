@@ -1,6 +1,6 @@
 {
   "name": "minify-template-literal",
-  "version": "1.2.0",
+  "version": "1.2.1",
   "repository": {
     "type": "git",
     "url": "git+https://github.com/uniho/minify-template-literal.git"
