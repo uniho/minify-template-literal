@@ -19,7 +19,7 @@ export default options => ({
         .replace(/<!--(?![<>\[\]])[\s\S]*?(?<![<>\[\]])-->/g, '')
 
         // Remove spaces after newline characters.
-        .replace(/\r?\n\s*(\S)/g, '$1')
+        .replace(/\r?\n\s*(\S)/g, ' $1')
 
         // Remove leading and trailing whitespace
         .trim()
